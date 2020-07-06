@@ -1,0 +1,39 @@
+label	TITLE
+image	title	"title.png"	0	0	800	600
+text	"PRESS SPACE TO START"  300	300
+label	TITLE_INPUT
+input	" "	GAMESTART
+goto	TITLE_INPUT
+
+label	GAMESTART
+set	player_x	0
+set	player_y	0
+
+label	GAME_DRAW
+image	player	"player.png"	player_x	player_y
+
+label	GAME_INPUT
+input	"←"	PLAYER_LEFT
+input	"→"	PLAYER_RIGHT
+
+label	GAME_UPDATE
+if	(	player_x	<	0	)	PLAYER_X0
+if	(	player_x	>	800	)	PLAYER_X800
+goto	GAME_DRAW
+
+
+label	PLAYER_LEFT
+set	player_x	(	player_x	-	1	)
+return
+
+label	PLAYER_RIGHT
+set	player_x	(	player_x	+	1	)
+return
+
+label	PLAYER_X0
+set	player_x	0
+return
+
+label	PLAYER_X800
+set	player_x	800
+return
